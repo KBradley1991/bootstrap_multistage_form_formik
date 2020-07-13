@@ -3,3 +3,6 @@
   margin-bottom: 33px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+.error-message {
+  color: black;
+}

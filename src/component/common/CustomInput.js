@@ -5,22 +5,23 @@ import "./customInput.css";
 const CustomInput = (props) => {
   const [field, meta] = useField(props);
   //console.log("field", field);
-  console.log("meta", meta);
+  // console.log("meta", meta);
   return (
     <>
       <div className="input-group">
         <input
+          {...field}
           name={field.name}
           value={field.value || ""}
           onChange={field.onChange}
           {...props}
         />
-        {meta.error && meta.touched && (
-          <div>
-            <h1>{meta.error}</h1>
-          </div>
-        )}
       </div>
+      {meta.error && meta.touched && (
+        <div className="alert alert-danger" role="alert">
+          <p className="error-message">{meta.error}</p>
+        </div>
+      )}
     </>
   );
 };

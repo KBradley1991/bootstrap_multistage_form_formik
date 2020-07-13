@@ -5,7 +5,7 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 export const signupFormStage1 = yup.object().shape({
   email: yup.string().email().required("Please enter a email address"),
-  phoneNumber: yup
+  phone: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("Please enter a phone number"),
