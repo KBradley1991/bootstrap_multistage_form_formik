@@ -9,7 +9,7 @@ import {
 
 const SignupForm = () => {
   //form state to change form stage
-  const [formStage, setFormState] = useState(0);
+  const [formStage, setFormState] = useState(1);
   //component to group form stages
   const FormStage = ({ children }) => children;
   //form inital values
@@ -17,6 +17,13 @@ const SignupForm = () => {
     { email: "", phone: "", password: "", reEnterPassword: "" },
     { otp: "" }
   ];
+  //submit function
+  const submitFn = (values, actions) => {
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      actions.setSubmitting(false);
+    }, 1000);
+  };
   return (
     <>
       <div className="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
@@ -26,7 +33,7 @@ const SignupForm = () => {
             <div className="card-body">
               <h2 className="title">Registration Info</h2>
 
-              <FormCreator>
+              <FormCreator formStage={formStage} submitFn={submitFn}>
                 <FormStage
                   initValues={initialValuesArray[0]}
                   validationSchema={signupFormStage1}
@@ -66,7 +73,7 @@ const SignupForm = () => {
                   <CustomInput
                     className="input--style-3"
                     type="password"
-                    placeholder="Re-enter your password"
+                    placeholder="Enter OTP code"
                     name="otp"
                   />
                   <button className="btn btn--pill btn--green" type="submit">

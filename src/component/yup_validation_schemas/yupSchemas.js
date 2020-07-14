@@ -3,6 +3,9 @@ import * as yup from "yup";
 //phone number validation
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
+//yup otp input validation
+const otpCode = /\b\d{4}\b/;
+
 export const signupFormStage1 = yup.object().shape({
   email: yup.string().email().required("Please enter a email address"),
   phone: yup
@@ -19,8 +22,8 @@ export const signupFormStage1 = yup.object().shape({
 });
 
 export const signupFormStage2 = yup.object().shape({
-  otp: yup
-    .number()
-    .min(4, "Enter the correct OTP code")
-    .max(4, "Enter the correct OTP code")
+  otp: yup.string().matches(otpCode, {
+    message: "Must be exactly 4 numbers",
+    excludeEmptyString: true
+  })
 });
